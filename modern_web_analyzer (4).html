@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebInsight AI - Professional Webpage Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fafbfc;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Professional Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e8eaed;
+            padding: 0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #5f6368;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #1a73e8;
+        }
+
+        .nav-cta {
+            background: #1a73e8;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            background: #1557b0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+
+        /* Landing Container */
+        .landing-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        /* Subtle Background Elements */
+        .bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.03), rgba(66, 133, 244, 0.05));
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .bg-circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -10s;
+        }
+
+        .bg-circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(-10px, -30px) rotate(180deg); }
+            75% { transform: translate(-20px, 10px) rotate(270deg); }
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 800px;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #e8f0fe;
+            color: #1a73e8;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            border: 1px solid #d2e3fc;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: #5f6368;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Professional Input Section */
+        .input-section {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .input-container {
+            position: relative;
+            background: white;
+            border: 2px solid #dadce0;
+            border-radius: 12px;
+            padding: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .input-container:hover {
+            border-color: #1a73e8;
+            box-shadow: 0 4px 16px rgba(26, 115, 232, 0.1);
+        }
+
+        .input-container:focus-within {
+            border-color: #1a73e8;
+            box-shadow: 0 4px 16px rgba(26, 115, 232, 0.15);
+        }
+
+        .url-input {
+            width: calc(100% - 140px);
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            background: transparent;
+            color: #202124;
+            outline: none;
+            font-weight: 400;
+        }
+
+        .url-input::placeholder {
+            color: #9aa0a6;
+        }
+
+        .analyze-btn {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .analyze-btn:hover {
+            background: #1557b0;
+            transform: translateY(-50%) translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+
+        .analyze-btn:active {
+            transform: translateY(-50%) translateY(0px);
+        }
+
+        /* Trust Indicators */
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            color: #5f6368;
+            font-size: 0.875rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trust-icon {
+            width: 16px;
+            height: 16px;
+            background: #34a853;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+        }
+
+        /* Professional Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #dadce0;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #1a73e8, #4285f4);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #1a73e8;
+            box-shadow: 0 8px 24px rgba(26, 115, 232, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: #e8f0fe;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #1a73e8;
+        }
+
+        .feature-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #202124;
+            margin: 0;
+        }
+
+        .feature-card p {
+            color: #5f6368;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 4rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a73e8;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #5f6368;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* App Container */
+        .app-container {
+            display: none;
+            height: 100vh;
+            background: #fafbfc;
+        }
+
+        .app-header {
+            background: white;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #dadce0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .current-url {
+            font-size: 0.875rem;
+            color: #5f6368;
+            background: #f1f3f4;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+
+        .new-analysis-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .new-analysis-btn:hover {
+            background: #1557b0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+
+        .main-content {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+
+        .webpage-panel {
+            flex: 1;
+            background: white;
+            border-right: 1px solid #dadce0;
+            position: relative;
+        }
+
+        .panel-header {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #dadce0;
+            font-weight: 600;
+            color: #202124;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .webpage-frame {
+            width: 100%;
+            height: calc(100% - 57px);
+            border: none;
+        }
+
+        .chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: #fafbfc;
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            background: #1a73e8;
+        }
+
+        .message.ai .message-avatar {
+            background: #34a853;
+        }
+
+        .message-content {
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            border: 1px solid #dadce0;
+            max-width: 75%;
+            color: #202124;
+            line-height: 1.5;
+        }
+
+        .message.user .message-content {
+            background: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+
+        .chat-input-container {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid #dadce0;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 2px solid #dadce0;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s ease;
+            resize: none;
+            min-height: 50px;
+            max-height: 120px;
+            font-family: inherit;
+            background: #fafbfc;
+            color: #202124;
+        }
+
+        .chat-input::placeholder {
+            color: #9aa0a6;
+        }
+
+        .chat-input:focus {
+            border-color: #1a73e8;
+            background: white;
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.1);
+        }
+
+        .send-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            min-width: 80px;
+        }
+
+        .send-btn:hover:not(:disabled) {
+            background: #1557b0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #5f6368;
+        }
+
+        .welcome-message h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #202124;
+            font-weight: 600;
+        }
+
+        .welcome-message p {
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9aa0a6;
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+            background: #9aa0a6;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: scale(0.8); opacity: 0.5; }
+            30% { transform: scale(1); opacity: 1; }
+        }
+
+        .app-header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .app-header .logo img {
+            height: 28px;
+            width: auto;
+        }
+
+        /* Footer Attribution */
+        .footer {
+            background: #f8f9fa;
+            border-top: 1px solid #dadce0;
+            padding: 2rem 0;
+            text-align: center;
+            color: #5f6368;
+            font-size: 0.875rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .made-by {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 500;
+            color: #202124;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 2rem;
+                align-items: center;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .webpage-panel, .chat-panel {
+                flex: none;
+                height: 50%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .trust-indicators {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <img src="https://infomericainc.com/Content/images/logo.png" alt="Infomerica Inc Logo" />
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#enterprise">Enterprise</a></li>
+                <li><a href="#docs">Documentation</a></li>
+                <li><button class="nav-cta">Get Started</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <div class="landing-container" id="landingPage">
+        <!-- Subtle Background Elements -->
+        <div class="bg-elements">
+            <div class="bg-circle bg-circle-1"></div>
+            <div class="bg-circle bg-circle-2"></div>
+            <div class="bg-circle bg-circle-3"></div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-badge">
+                <span>✨</span>
+                Powered by Advanced AI Technology
+            </div>
+            <h1>Intelligent Webpage Analysis</h1>
+            <p class="subtitle">Get instant, comprehensive insights about any webpage with our enterprise-grade AI analysis platform. Understand content, performance, and optimization opportunities in seconds.</p>
+        </div>
+        
+        <!-- Professional Input Section -->
+        <div class="input-section">
+            <div class="input-container">
+                <input type="url" class="url-input" id="urlInput" placeholder="Enter webpage URL (e.g., https://example.com)" />
+                <button class="analyze-btn" id="analyzeBtn">
+                    <span id="btnText">Analyze</span>
+                    <div class="loading" id="btnLoading" style="display: none;"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="trust-indicators">
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <span>Enterprise Security</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <span>99.9% Uptime</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <span>GDPR Compliant</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✓</div>
+                <span>SOC 2 Certified</span>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" data-target="250000">0</span>
+                <span class="stat-label">Websites Analyzed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="99.8">0</span>
+                <span class="stat-label">Accuracy Rate %</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="1.2">0</span>
+                <span class="stat-label">Avg Response Time (s)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="50">0</span>
+                <span class="stat-label">Enterprise Clients</span>
+            </div>
+        </div>
+        
+        <!-- Professional Features -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Deep Content Analysis</h3>
+                </div>
+                <p>Advanced natural language processing analyzes webpage content, structure, and semantic meaning to provide comprehensive insights about user intent and content quality.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Performance Intelligence</h3>
+                </div>
+                <p>Real-time performance metrics analysis including Core Web Vitals, loading speeds, and technical optimization recommendations for enhanced user experience.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Enterprise Security</h3>
+                </div>
+                <p>Bank-level encryption, secure API endpoints, and comprehensive data protection ensuring your analysis requests remain private and secure.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">📊</div>
+                    <h3>SEO & Accessibility</h3>
+                </div>
+                <p>Comprehensive SEO audit including meta tags, structured data, accessibility compliance, and actionable recommendations for search optimization.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Competitive Analysis</h3>
+                </div>
+                <p>Understand how webpages compare against industry standards and best practices with detailed competitive intelligence and benchmarking data.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">🔗</div>
+                    <h3>API Integration</h3>
+                </div>
+                <p>Seamless integration capabilities with enterprise workflows, custom applications, and existing business intelligence platforms via RESTful APIs.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div class="app-container" id="appContainer">
+        <div class="app-header">
+            <div class="logo">
+                <img src="https://infomericainc.com/Content/images/logo.png" alt="Infomerica Inc Logo" />
+            </div>
+            <div class="current-url" id="currentUrl"></div>
+            <button class="new-analysis-btn" id="newAnalysisBtn">New Analysis</button>
+        </div>
+        
+        <div class="main-content">
+            <div class="webpage-panel">
+                <div class="panel-header">Webpage Preview</div>
+                <iframe class="webpage-frame" id="webpageFrame" src="about:blank"></iframe>
+            </div>
+            
+            <div class="chat-panel">
+                <div class="panel-header">AI Analysis Assistant</div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <h3>Analysis Complete</h3>
+                        <p>I've successfully analyzed the webpage and I'm ready to answer detailed questions about its content, technical implementation, performance, SEO, and business strategy.</p>
+                    </div>
+                </div>
+                
+                <div class="typing-indicator" id="typingIndicator">
+                    <span>AI is analyzing</span>
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <textarea class="chat-input" id="chatInput" placeholder="Ask about SEO, performance, content strategy, technical implementation..."></textarea>
+                        <button class="send-btn" id="sendBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 Infomerica Inc. All rights reserved. | Enterprise AI Solutions</p>
+                <div class="made-by">
+                    <span>Made with</span>
+                    <span class="heart">♥</span>
+                    <span>by <strong>Bhargav</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate statistics on scroll
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = parseInt(target.dataset.target);
+                        animateNumber(target, 0, finalValue);
+                        observer.unobserve(target);
+                    }
+                });
+            });
+            
+            statNumbers.forEach(stat => observer.observe(stat));
+        }
+
+        function animateNumber(element, start, end) {
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = start + (end - start) * progress;
+                
+                if (end > 1000) {
+                    element.textContent = Math.floor(current).toLocaleString();
+                } else {
+                    element.textContent = current.toFixed(1);
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        class WebInsightAI {
+            constructor() {
+                this.currentUrl = '';
+                this.webpageContent = '';
+                this.apiKey = null;
+                this.initializeEventListeners();
+                this.initializeEffects();
+            }
+
+            initializeEffects() {
+                animateStats();
+            }
+
+            initializeEventListeners() {
+                // Landing page events
+                document.getElementById('analyzeBtn').addEventListener('click', () => this.analyzeWebpage());
+                document.getElementById('urlInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.analyzeWebpage();
+                });
+
+                // App events
+                document.getElementById('newAnalysisBtn').addEventListener('click', () => this.showLandingPage());
+                document.getElementById('sendBtn').addEventListener('click', () => this.sendMessage());
+                document.getElementById('chatInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+
+                // Auto-resize textarea
+                document.getElementById('chatInput').addEventListener('input', (e) => {
+                    e.target.style.height = 'auto';
+                    e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+                });
+            }
+
+            async analyzeWebpage() {
+                const urlInput = document.getElementById('urlInput');
+                const analyzeBtn = document.getElementById('analyzeBtn');
+                const btnText = document.getElementById('btnText');
+                const btnLoading = document.getElementById('btnLoading');
+
+                const url = urlInput.value.trim();
+                if (!url) {
+                    this.showNotification('Please enter a valid URL', 'error');
+                    return;
+                }
+
+                // Add protocol if missing
+                const fullUrl = url.startsWith('http') ? url : `https://${url}`;
+
+                // Show loading state
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline-block';
+                analyzeBtn.disabled = true;
+
+                try {
+                    // Validate URL
+                    new URL(fullUrl);
+                    
+                    // Simulate analysis
+                    await this.simulateAnalysis();
+                    
+                    this.currentUrl = fullUrl;
+                    this.showApp();
+                    
+                } catch (error) {
+                    this.showNotification('Please enter a valid URL', 'error');
+                } finally {
+                    // Reset button state
+                    btnText.style.display = 'inline-block';
+                    btnLoading.style.display = 'none';
+                    analyzeBtn.disabled = false;
+                }
+            }
+
+            async simulateAnalysis() {
+                // Simulate API processing time
+                return new Promise(resolve => setTimeout(resolve, 2000));
+            }
+
+            showApp() {
+                // Smooth transition
+                document.getElementById('landingPage').style.transition = 'opacity 0.3s ease';
+                document.getElementById('landingPage').style.opacity = '0';
+                
+                setTimeout(() => {
+                    document.getElementById('landingPage').style.display = 'none';
+                    document.getElementById('appContainer').style.display = 'block';
+                    document.getElementById('appContainer').style.opacity = '0';
+                    
+                    requestAnimationFrame(() => {
+                        document.getElementById('appContainer').style.transition = 'opacity 0.3s ease';
+                        document.getElementById('appContainer').style.opacity = '1';
+                    });
+                }, 300);
+                
+                document.getElementById('currentUrl').textContent = this.currentUrl;
+                document.getElementById('webpageFrame').src = this.currentUrl;
+                document.getElementById('chatMessages').innerHTML = `
+                    <div class="welcome-message">
+                        <h3>Analysis Complete</h3>
+                        <p>I've successfully analyzed the webpage and I'm ready to answer detailed questions about its content, technical implementation, performance, SEO, and business strategy.</p>
+                    </div>
+                `;
+            }
+
+            showLandingPage() {
+                document.getElementById('appContainer').style.opacity = '0';
+                
+                setTimeout(() => {
+                    document.getElementById('appContainer').style.display = 'none';
+                    document.getElementById('landingPage').style.display = 'flex';
+                    document.getElementById('landingPage').style.opacity = '0';
+                    
+                    requestAnimationFrame(() => {
+                        document.getElementById('landingPage').style.opacity = '1';
+                    });
+                }, 300);
+                
+                document.getElementById('urlInput').value = '';
+                this.currentUrl = '';
+            }
+
+            async sendMessage() {
+                const chatInput = document.getElementById('chatInput');
+                const message = chatInput.value.trim();
+                
+                if (!message) return;
+
+                // Add user message
+                this.addMessage(message, 'user');
+                chatInput.value = '';
+                chatInput.style.height = 'auto';
+
+                // Show typing indicator
+                this.showTypingIndicator();
+
+                // Get AI response
+                const response = await this.getAIResponse(message);
+                
+                // Hide typing indicator and add AI response
+                this.hideTypingIndicator();
+                this.addMessage(response, 'ai');
+            }
+
+            addMessage(content, sender) {
+                const chatMessages = document.getElementById('chatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}`;
+                
+                const avatar = sender === 'user' ? 'You' : 'AI';
+                
+                messageDiv.innerHTML = `
+                    <div class="message-avatar">${avatar.charAt(0)}</div>
+                    <div class="message-content">${content}</div>
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            showTypingIndicator() {
+                document.getElementById('typingIndicator').style.display = 'flex';
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            }
+
+            hideTypingIndicator() {
+                document.getElementById('typingIndicator').style.display = 'none';
+            }
+
+            async getAIResponse(message) {
+                // Simulate AI processing
+                await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 2000));
+
+                const responses = [
+                    "Based on my analysis, this webpage demonstrates strong technical SEO implementation with proper meta tags, structured data, and semantic HTML markup. The site architecture follows best practices for search engine crawling and indexing.",
+                    "The performance metrics indicate excellent Core Web Vitals scores with optimized image delivery, efficient CSS/JS bundling, and strategic lazy loading implementation. Load times are well within Google's recommended thresholds.",
+                    "From a content perspective, the webpage employs effective information architecture with clear value propositions, logical content hierarchy, and strategic call-to-action placement that aligns with conversion optimization principles.",
+                    "The accessibility implementation shows WCAG 2.1 AA compliance with proper ARIA labels, keyboard navigation support, and sufficient color contrast ratios. This ensures inclusive user experience across all user groups.",
+                    "Technical analysis reveals modern development practices including responsive design patterns, progressive enhancement, and clean semantic markup. The codebase appears maintainable and follows industry standards."
+                ];
+
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+
+            showNotification(message, type = 'info') {
+                // Create professional notification
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: white;
+                    color: ${type === 'error' ? '#d93025' : '#1a73e8'};
+                    padding: 1rem 1.5rem;
+                    border-radius: 8px;
+                    border: 1px solid ${type === 'error' ? '#fce8e6' : '#e8f0fe'};
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 10000;
+                    opacity: 0;
+                    transform: translateX(100%);
+                    transition: all 0.3s ease;
+                    font-weight: 500;
+                    min-width: 200px;
+                `;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                requestAnimationFrame(() => {
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateX(0)';
+                });
+                
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 4000);
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            new WebInsightAI();
+        });
+    </script>
+</body>
+</html>
